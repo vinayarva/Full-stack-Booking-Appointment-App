@@ -10,28 +10,33 @@ const app =  express()
 //Custom Imports
 const sequelize = require("./Database/database")
 const rootDir = require("./Utilities/path")
-const user =  require("./Models/booking")
+const user =  require("./Models/booking");
+const { where } = require("sequelize");
 
 app.use(cors())
 
 app.use(bodyParser.json());
 
-
 app.get("/",(req,res,next)=>{
 
      user.findAll().then(result => {
         res.json(result)
-     }).catch(err =>  console.log(err))
-    
-    
+     }).catch(err =>  console.log(err)) 
 })
 
 app.post("/",(req,res,next)=>{
     const data = req.body
     user.create(data)
-    res.redirect("/")
+    res.sendStatus(200)
 })
 
+app.delete("/delete:id",(req,res,next)=>{
+    const userid = req.params.id
+
+    user.destroy({ where: { id: userid}}).then(res=>console.log(res)).catch(err => console.log(err))
+
+    res.sendStatus(200)
+})
 
 sequelize.sync().then((result)=>{
     app.listen(4000,()=>{
