@@ -30,13 +30,29 @@ app.post("/",(req,res,next)=>{
     res.sendStatus(200)
 })
 
-app.delete("/delete:id",(req,res,next)=>{
+app.delete("/delete/:id",(req,res,next)=>{
     const userid = req.params.id
 
     user.destroy({ where: { id: userid}}).then(res=>console.log(res)).catch(err => console.log(err))
 
     res.sendStatus(200)
 })
+
+app.put("/edit/:id",(req,res,next)=>{
+    
+    const user_id = req.params.id
+
+    user.findByPk(user_id).then((result)=>{
+        result.username =  req.body.username
+        result.phoneNumber =  req.body.phoneNumber
+        result.email =  req.body.email
+        return result.save()
+
+    }).catch(err=> console.log(err))
+
+    res.sendStatus(200)
+})
+
 
 sequelize.sync().then((result)=>{
     app.listen(4000,()=>{
