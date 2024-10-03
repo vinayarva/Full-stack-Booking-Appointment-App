@@ -1,4 +1,4 @@
-const Path =  require("path")
+const Path = require("path");
 
 const rootPath = Path.dirname(require.main.filename);
 

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Appointment App</title>
     <style>
-        
-        label, input {
+        label,
+        input {
             display: block;
             margin-bottom: 10px;
         }
- 
     </style>
 </head>
 
@@ -20,18 +20,21 @@
         <input type="hidden" id="userID">
         <label for="username">Username :</label>
         <input type="text" name="username" id="username">
-        
+
         <label for="phoneNumber">Phone Number :</label>
         <input type="tel" name="phoneNumber" id="phoneNumber">
-        
+
         <label for="email">Email :</label>
         <input type="email" name="email" id="email">
-        
+
         <button type="submit" id="submitButton">Submit</button>
     </form>
-    <div id="container"><ul id="items"></ul></div>
+    <div id="container">
+        <ul id="items"></ul>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js"></script>
     <script src="index.js"></script>
 </body>
+
 </html>
